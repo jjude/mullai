@@ -5,6 +5,7 @@
 import PathKit
 import Yaml
 import Stencil
+import Markingbird
 
 // read config file
 let configFile = Path("config.yml")
@@ -23,7 +24,9 @@ let sitemapTemplate = try Template(path: "theme/sitemap.html")
 let archivesTemplate = try Template(path: "theme/archives.html")
 
 
-let context = Context(dictionary:["Name": config["name"], "Description": config["description"]])
+let context = Context(dictionary: [
+  "site" : ["Name": config["name"].string!, "Description": config["description"].string!]
+  ])
 
 do {
   let rendered = try indexTemplate.render(context)
@@ -33,11 +36,14 @@ do {
 }
 
 
+// create a markdown parser
+var markdown = Markdown()
+
 // loop through all files
 // in v1, all content files are in single directory
 
 for filename in Path("Content").glob("*.md") {
     var content = try String(contentsOfFile: String(filename), encoding: NSUTF8StringEncoding)
     var fileContents = content.componentsSeparatedByString("---")
-    print(fileContents[1])
+    print(markdown.transform(fileContents[1]))
 }
