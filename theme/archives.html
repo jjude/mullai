@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="content" role="main">
+{% for entry in entries %}
+  <article class="post">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/{{entry.Slug}}/">{{entry.Title}}</a></h3>
+      <span class="post-meta">
+        <time pubdate="pubdate">{{entry.PublishAt|date:"Jan 2, 2006"}}</time>
+        {% if entry.TagsHTML %}
+          on: {{entry.TagsHTML}}
+        {% endif %}
+      </span>
+    </header>
+    <section class="post-excerpt">
+      <p>{{entry.Excerpt}}&hellip;</p>
+    </section>
+  </article>
+{% endfor %}
+
+{% endblock %}

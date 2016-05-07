@@ -1,0 +1,9 @@
+/* MAIN */
+Develop & Main Design: Joseph Jude
+Twitter: @jjude
+Site: http://www.jjude.com
+Location: Delhi, India
+
+/* SITE */
+Doctype: HTML5
+Generator: olai (http://www.olai.in)

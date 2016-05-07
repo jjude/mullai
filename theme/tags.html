@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content">
+  <article>
+    <h1>All Themes</h1>by<h2>Joseph Jude</h2>
+  </article>
+</div>
+
+{% for tag in tags %}
+      <a id="title" href="/tags/{{tag}}/">{{tag}}</a><br/>
+{% endfor %}
+
+{% endblock %}

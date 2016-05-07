@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content">
+  <article>
+    <h1>All Posts</h1>under - {{tag}}
+  </article>
+</div>
+<div class="content">
+{% for entry in entries %}
+  <article>
+  <a href="/{{entry.Slug}}/"><h1>{{entry.Title}}</h1></a>
+    <div class="date">
+      Posted: <span>{{entry.PublishAt|date:"Jan 2, 2006"}}</span>
+    </div>
+    <p>{{entry.Excerpt}}&hellip;</p>
+</article>
+{% endfor %}
+</div>
+<div class="paging">
+  <span> <a href="/tags/">Browse all tags</a></span>
+</div>
+</div>
+
+{% endblock %}

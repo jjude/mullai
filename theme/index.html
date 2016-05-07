@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="content">
+{% for entry in entries|slice:":5" %}
+  <article>
+  <a href="/{{entry.Slug}}/"><h1>{{entry.Title}}</h1></a>
+    <div class="date">
+      Posted: <span>{{entry.PublishAt}}</span>
+      {% if tags %}
+       Tags:
+        <span>
+          {% for tag in tags %}
+            <a href="/tags/{{tag}}/">{{tag}}</a> |
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+    <p>{{entry.Excerpt}}&hellip;</p>
+</article>
+{% endfor %}
+</div>
+<div class="paging">
+  <span> <a href="/archives/">Read earlier  articles</a></span>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content">
+  <article>
+  <h1>{{entry.Title}}</h1>
+  {% if entry.IsPost %}
+    <div class="date">
+      Posted: <span>{{entry.PublishAt|date:"Jan 2, 2006"}}</span>
+      {% if tags %}
+       Tags:
+        <span>
+          {% for tag in tags %}
+            <a href="/tags/{{tag}}/">{{tag}}</a> |
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {{entry.Content|safe}}
+
+    {% if entry.IsPost %}
+      <footer class="page-foot">
+          <h4>{{user.Name}}</h4>
+          <p>You can subscribe via <a href="/feed.xml">RSS</a> to follow as I blog. You can also follow me on <a href="http://twitter.com/{{user.Twitter}}">twitter</a>.</p>
+
+          <br/>
+        <div class="share">
+          <h4>Share this post on</h4>
+          <a href="https://twitter.com/share?text={{entry.Title}} by @{{user.Twitter}}:"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">Twitter
+          </a> | 
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{site.URL}}/{{entry.Slug}}"
+              onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                <span class="hidden">Facebook</span>
+          </a> |
+          <a href="https://plus.google.com/share?url={{site.URL}}/{{entry.Slug}}"
+             onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                <span class="hidden">Google+</span>
+          </a>
+        </div>
+      </footer>
+      {% if site.DisqusName %}
+        {% include "includes/disqus.html" %}
+      {% endif %}
+  {% endif %}
+  </article>
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
